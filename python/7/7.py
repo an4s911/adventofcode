@@ -21,7 +21,7 @@ def part1():
         fuel = 0
     print(ans)
 
-# part1()
+part1()
 
 # Part 2
 def part2():
