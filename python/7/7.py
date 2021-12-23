@@ -21,6 +21,26 @@ def part1():
         fuel = 0
     print(ans)
 
-part1()
+# part1()
 
 # Part 2
+def part2():
+    positions = list(map(int, open(filename).read().split(",")))
+    
+    fuel = 0
+    ans = None
+    for j in range(1, max(positions) + 1):
+        for i in positions:
+            curr_diff = i - j if i >= j else j - i 
+            sum_diff = 0
+            for i in range(1, curr_diff + 1):
+                sum_diff += i
+            fuel += sum_diff
+        print(fuel, j)
+        if not ans or fuel < ans:
+            ans = fuel
+            # pos = j
+        fuel = 0
+    print(ans)
+
+part2()
