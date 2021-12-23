@@ -36,11 +36,12 @@ def part2():
             for i in range(1, curr_diff + 1):
                 sum_diff += i
             fuel += sum_diff
-        print(fuel, j)
+        # print(j)
         if not ans or fuel < ans:
             ans = fuel
             # pos = j
         fuel = 0
     print(ans)
 
+print("Wait for a while...\n...")
 part2()
