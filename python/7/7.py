@@ -32,9 +32,7 @@ def part2():
     for j in range(1, max(positions) + 1):
         for i in positions:
             curr_diff = i - j if i >= j else j - i 
-            sum_diff = 0
-            for i in range(1, curr_diff + 1):
-                sum_diff += i
+            sum_diff = curr_diff * (curr_diff + 1) // 2
             fuel += sum_diff
         # print(j)
         if not ans or fuel < ans:
@@ -43,5 +41,4 @@ def part2():
         fuel = 0
     print(ans)
 
-print("Wait for a while...\n...")
 part2()
