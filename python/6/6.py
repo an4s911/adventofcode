@@ -41,9 +41,5 @@ def part2(days):
 
     print(sum(fish_count.values()))
 
-while True:
-    days = 1000000
-    if input(": ") == "1":
-        part1(days)
-    else:
-        part2(days)
+part1(80)
+part2(256)
