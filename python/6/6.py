@@ -9,7 +9,7 @@ fishes = list(map(int, (open(filename).read().split(","))))
 def part1(days):
     # days = 80
     temp_fishes = deepcopy(fishes)
-    for _ in range(days):
+    for day in range(days):
         # print(fishes)
         # input("Proceed?: ")
         n = len(temp_fishes)
@@ -31,7 +31,7 @@ def part2(days):
         fish_count[fish] += 1
 
     # days = 256
-    for _ in range(days):
+    for day in range(days):
         old0 = fish_count[0]
         for i in range(0, 6):
             fish_count[i] = fish_count[i + 1]
