@@ -12,7 +12,6 @@ for line in lines:
     grid.append([int(num) for num in line])
 
 
-# Part 1
 def increment(grid, start_row=0, start_col=0, end_row=None, end_col=None):
     # increment all elements in grid by 1
     # if end_row and end_col are given then increment from start_row, start_col to end_row, end_col
@@ -55,20 +54,44 @@ def clear_flashed(grid, flashed):
         grid[row][col] = 0
 
 
+def do_round(grid):
+    # do one round of incrementing and flashing
+    flashed = []
+    increment(grid)
+    flash(grid, flashed)
+    clear_flashed(grid, flashed)
+    return flashed
+
+
+# Part 1
 def part1():
     temp_grid = deepcopy(grid)
 
     # initialize total flashed to 0
     total_flashed = 0
     for i in range(100):
-        flashed = []
-        increment(temp_grid)
-        flash(temp_grid, flashed)
-        clear_flashed(temp_grid, flashed)
-        # add length of flashed to total flashed
+        flashed = do_round(temp_grid)
+        # # add length of flashed to total flashed
         total_flashed += len(flashed)
 
     print(total_flashed)
 
 
 part1()
+
+
+# Part 2
+def part2():
+    temp_grid = deepcopy(grid)
+
+    # initialize counter to 0
+    counter = 1
+
+    # while length of flashed is not equal to height * width of grid
+    while len(do_round(temp_grid)) != len(grid) * len(grid[0]):
+        counter += 1
+
+    print(counter)
+
+
+part2()
