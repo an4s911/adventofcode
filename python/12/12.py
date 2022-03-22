@@ -33,35 +33,34 @@ class Cave:
         cave2.add_connection(cave1)
 
 
-ans = 0
-visited = set()
-
-
-def search(cave: Cave):
-    global ans
-
-    if cave.name == 'end':
-        ans += 1
-        return
-
-    if cave.is_small_cave and cave in visited:
-        return
-
-    if cave.is_small_cave:
-        visited.add(cave)
-
-    for connection in cave.connections:
-        search(connection)
-
-    if cave.is_small_cave:
-        visited.remove(cave)
-
-
 caves: Dict[str, Cave] = Cave.caves
+
+# Part 1
 
 
 def part1():
-    # Part 1
+    ans = 0
+    visited = set()
+
+    def search(cave: Cave):
+        nonlocal ans
+
+        if cave.name == 'end':
+            ans += 1
+            return
+
+        if cave.is_small_cave and cave in visited:
+            return
+
+        if cave.is_small_cave:
+            visited.add(cave)
+
+        for connection in cave.connections:
+            search(connection)
+
+        if cave.is_small_cave:
+            visited.remove(cave)
+
     with open(filename) as file:
         for line in file:
             line = line.strip()
