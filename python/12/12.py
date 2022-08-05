@@ -1,3 +1,4 @@
+from curses import nonl
 from sys import argv
 from typing import Dict, Type
 
@@ -73,3 +74,37 @@ def part1():
 
 
 part1()
+
+# Part 2
+
+
+def part2():
+    ans = 0
+    visited = {}
+
+    def search(cave: Cave):
+        nonlocal ans
+
+        if cave.name == 'end':
+            ans += 1
+            return
+
+        if cave.is_small_cave and cave in visited:
+            return
+
+        if cave.is_small_cave:
+            if cave not in visited:
+                visited[cave] = 0
+            visited[cave] += 1
+
+        for connection in cave.connections:
+            search(connection)
+
+        if cave.is_small_cave:
+            visited[cave] -= 1
+
+    search(caves['start'])
+    print(ans)
+
+
+part2()
